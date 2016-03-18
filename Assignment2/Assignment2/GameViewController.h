@@ -14,7 +14,8 @@
 #endif
 
 #import "maze.h"
-#import "wall.h"
+#import "Wall.hpp"
+#import "PhysicsEngine.hpp"
 #import <vector>
 #import <cmath>
 

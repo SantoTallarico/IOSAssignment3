@@ -6,7 +6,7 @@
 //  Copyright © 2016 Santo Tallarico. All rights reserved.
 //
 
-#include "wall.h"
+#include "wall.hpp"
 
 Wall::Wall() {
     

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C43139151C9B95E70096988E /* PhysicsEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C43139131C9B95E70096988E /* PhysicsEngine.cpp */; };
+		C43139181C9B96820096988E /* Hitbox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C43139161C9B96820096988E /* Hitbox.cpp */; };
+		C431391B1C9B9F8C0096988E /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C43139191C9B9F8C0096988E /* Model.cpp */; };
 		C468D0D01C8B80BA001610AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C468D0CF1C8B80BA001610AC /* main.m */; };
 		C468D0D31C8B80BA001610AC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C468D0D21C8B80BA001610AC /* AppDelegate.m */; };
 		C468D0D51C8B80BA001610AC /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C468D0D41C8B80BA001610AC /* Shader.fsh */; };
@@ -21,7 +24,7 @@
 		C468D0F31C8B8733001610AC /* rightarrow.png in Resources */ = {isa = PBXBuildFile; fileRef = C468D0F11C8B8733001610AC /* rightarrow.png */; };
 		C468D0F41C8B8733001610AC /* leftarrow.png in Resources */ = {isa = PBXBuildFile; fileRef = C468D0F21C8B8733001610AC /* leftarrow.png */; };
 		C468D0F81C8B9172001610AC /* botharrow.png in Resources */ = {isa = PBXBuildFile; fileRef = C468D0F61C8B9172001610AC /* botharrow.png */; };
-		C468D0FC1C8B91E7001610AC /* wall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C468D0FA1C8B91E7001610AC /* wall.cpp */; };
+		C468D0FC1C8B91E7001610AC /* Wall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C468D0FA1C8B91E7001610AC /* Wall.cpp */; };
 		C468D0FE1C8BA103001610AC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C468D0FD1C8BA103001610AC /* CoreGraphics.framework */; };
 		C468D1001C8BA13E001610AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C468D0FF1C8BA13E001610AC /* UIKit.framework */; };
 		C468D1021C8BA1F8001610AC /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C468D1011C8BA1F8001610AC /* OpenGLES.framework */; };
@@ -31,6 +34,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C43139131C9B95E70096988E /* PhysicsEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhysicsEngine.cpp; sourceTree = "<group>"; };
+		C43139141C9B95E70096988E /* PhysicsEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PhysicsEngine.hpp; sourceTree = "<group>"; };
+		C43139161C9B96820096988E /* Hitbox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hitbox.cpp; sourceTree = "<group>"; };
+		C43139171C9B96820096988E /* Hitbox.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Hitbox.hpp; sourceTree = "<group>"; };
+		C43139191C9B9F8C0096988E /* Model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Model.cpp; sourceTree = "<group>"; };
+		C431391A1C9B9F8C0096988E /* Model.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Model.hpp; sourceTree = "<group>"; };
 		C468D0CB1C8B80BA001610AC /* Assignment2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assignment2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C468D0CF1C8B80BA001610AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C468D0D11C8B80BA001610AC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -51,8 +60,8 @@
 		C468D0F11C8B8733001610AC /* rightarrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightarrow.png; sourceTree = "<group>"; };
 		C468D0F21C8B8733001610AC /* leftarrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftarrow.png; sourceTree = "<group>"; };
 		C468D0F61C8B9172001610AC /* botharrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = botharrow.png; sourceTree = "<group>"; };
-		C468D0F91C8B91D4001610AC /* wall.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wall.h; sourceTree = "<group>"; };
-		C468D0FA1C8B91E7001610AC /* wall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wall.cpp; sourceTree = "<group>"; };
+		C468D0F91C8B91D4001610AC /* Wall.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Wall.hpp; sourceTree = "<group>"; };
+		C468D0FA1C8B91E7001610AC /* Wall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Wall.cpp; sourceTree = "<group>"; };
 		C468D0FD1C8BA103001610AC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		C468D0FF1C8BA13E001610AC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C468D1011C8BA1F8001610AC /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -119,9 +128,15 @@
 				C468D1031C8BC2A0001610AC /* floor.jpg */,
 				C468D1051C8BF47A001610AC /* test.jpg */,
 				C468D1091C8C0A69001610AC /* none.png */,
-				C468D0F91C8B91D4001610AC /* wall.h */,
-				C468D0FA1C8B91E7001610AC /* wall.cpp */,
+				C468D0F91C8B91D4001610AC /* Wall.hpp */,
+				C468D0FA1C8B91E7001610AC /* Wall.cpp */,
+				C43139131C9B95E70096988E /* PhysicsEngine.cpp */,
+				C43139141C9B95E70096988E /* PhysicsEngine.hpp */,
+				C43139161C9B96820096988E /* Hitbox.cpp */,
+				C43139171C9B96820096988E /* Hitbox.hpp */,
 				C468D0CE1C8B80BA001610AC /* Supporting Files */,
+				C43139191C9B9F8C0096988E /* Model.cpp */,
+				C431391A1C9B9F8C0096988E /* Model.hpp */,
 			);
 			path = Assignment2;
 			sourceTree = "<group>";
@@ -212,12 +227,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C431391B1C9B9F8C0096988E /* Model.cpp in Sources */,
 				C468D0ED1C8B822D001610AC /* DisjointSet.cpp in Sources */,
+				C43139181C9B96820096988E /* Hitbox.cpp in Sources */,
 				C468D0D31C8B80BA001610AC /* AppDelegate.m in Sources */,
 				C468D0DA1C8B80BA001610AC /* GameViewController.mm in Sources */,
 				C468D0EE1C8B822D001610AC /* maze.cpp in Sources */,
 				C468D0D01C8B80BA001610AC /* main.m in Sources */,
-				C468D0FC1C8B91E7001610AC /* wall.cpp in Sources */,
+				C43139151C9B95E70096988E /* PhysicsEngine.cpp in Sources */,
+				C468D0FC1C8B91E7001610AC /* Wall.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,6 +386,7 @@
 				C468D0E81C8B80BA001610AC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

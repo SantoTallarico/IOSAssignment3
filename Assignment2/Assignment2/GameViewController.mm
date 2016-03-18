@@ -73,6 +73,8 @@ GLfloat gPanelVertexData[48] =
     float _rotation;
     
     vector<Wall> walls;
+    PhysicsEngine physics;
+    bool moving;
     
     CGPoint _lastTranslate;
 }
@@ -97,6 +99,11 @@ GLfloat gPanelVertexData[48] =
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     tapGesture.numberOfTapsRequired = 2;
     [self.view addGestureRecognizer:tapGesture];
+    
+    UITapGestureRecognizer *movingGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleMovingGesture:)];
+    movingGesture.numberOfTapsRequired = 2;
+    movingGesture.numberOfTouchesRequired = 2;
+    [self.view addGestureRecognizer:movingGesture];
     
     UIPanGestureRecognizer *doubleDragGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleDragGesture:)];
     doubleDragGesture.maximumNumberOfTouches = 2;
@@ -125,6 +132,8 @@ GLfloat gPanelVertexData[48] =
     maze = new Maze();
     maze->Create();
     walls = vector<Wall>();
+    physics = PhysicsEngine();
+    moving = false;
     
     [self setupGL];
     
@@ -160,6 +169,7 @@ GLfloat gPanelVertexData[48] =
                     w = Wall(_vertexArray, _noneTexture, _textureUniform, GLKVector3Make(2 * i, 0, 2 * -j + 1.0f - 0.001f), GLKVector3Make(0, 0, 0));
                 }
                 walls.push_back(w);
+                physics.hitboxes.push_back(Hitbox::GetHitboxFromModel());
             }
             left = false;
             right = false;
@@ -189,6 +199,7 @@ GLfloat gPanelVertexData[48] =
                     w = Wall(_vertexArray, _noneTexture, _textureUniform, GLKVector3Make(2 * i + 1.0f - 0.001f, 0, 2 * -j), GLKVector3Make(M_PI_2, 0, 0));
                 }
                 walls.push_back(w);
+                physics.hitboxes.push_back(Hitbox::GetHitboxFromModel());
             }
             left = false;
             right = false;
@@ -218,6 +229,7 @@ GLfloat gPanelVertexData[48] =
                     w = Wall(_vertexArray, _noneTexture, _textureUniform, GLKVector3Make(2 * i, 0, 2 * -j - 1.0f + 0.001f), GLKVector3Make(0, 0, 0));
                 }
                 walls.push_back(w);
+                physics.hitboxes.push_back(Hitbox::GetHitboxFromModel());
             }
             left = false;
             right = false;
@@ -247,6 +259,7 @@ GLfloat gPanelVertexData[48] =
                     w = Wall(_vertexArray, _noneTexture, _textureUniform, GLKVector3Make(2 * i - 1.0f + 0.001f, 0, 2 * -j), GLKVector3Make(M_PI + M_PI_2, 0, 0));
                 }
                 walls.push_back(w);
+                physics.hitboxes.push_back(Hitbox::GetHitboxFromModel());
             }
             walls.push_back(Wall(_vertexArray, _floorTexture, _textureUniform, GLKVector3Make(2 * i, -1.0f, 2 * -j), GLKVector3Make(0, M_PI_2, 0)));
         }
@@ -259,6 +272,12 @@ GLfloat gPanelVertexData[48] =
         _translation.y = 0;
         _translation.z = 0;
         _rotation = 0;
+    }
+}
+
+- (void)handleMovingGesture:(UITapGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateRecognized) {
+        moving = !moving;
     }
 }
 
@@ -385,7 +404,7 @@ GLfloat gPanelVertexData[48] =
 
 - (void)update
 {
-    
+    physics.Update();
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
