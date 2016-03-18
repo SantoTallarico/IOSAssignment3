@@ -70,7 +70,8 @@ GLfloat gPanelVertexData[48] =
     Maze* maze;
     
     GLKVector3 _translation;
-    float _rotation;
+    float _rotationX;
+    float _rotationY;
     
     vector<Wall> walls;
     PhysicsEngine physics;
@@ -136,6 +137,8 @@ GLfloat gPanelVertexData[48] =
     physics = PhysicsEngine();
     moving = false;
     enemy = Model();
+    enemy.hitbox = Hitbox::GetHitboxFromModel();
+    physics.model = enemy;
     
     [self setupGL];
     
@@ -273,7 +276,8 @@ GLfloat gPanelVertexData[48] =
         _translation.x = 0;
         _translation.y = 0;
         _translation.z = 0;
-        _rotation = 0;
+        _rotationX = 0;
+        _rotationY = 0;
     }
 }
 
@@ -285,7 +289,8 @@ GLfloat gPanelVertexData[48] =
 
 - (void)handleDoubleDragGesture:(UIPanGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateChanged) {
-        _rotation += ([sender translationInView:self.view].x - _lastTranslate.x) / 100.0f;
+        _rotationX += ([sender translationInView:self.view].x - _lastTranslate.x) / 100.0f;
+        _rotationY += ([sender translationInView:self.view].y - _lastTranslate.y) / 100.0f;
         _lastTranslate = [sender translationInView:self.view];
     }
     if (sender.state == UIGestureRecognizerStateEnded) {
@@ -296,8 +301,8 @@ GLfloat gPanelVertexData[48] =
 
 - (void)handleSingleDragGesture:(UIPanGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateChanged) {
-        _translation.x += cosf(_rotation) * ([sender translationInView:self.view].x - _lastTranslate.x) / 100.0f + sinf(_rotation) * ([sender translationInView:self.view].y - _lastTranslate.y) / 100.0f;
-        _translation.z -= cosf(_rotation) * ([sender translationInView:self.view].y - _lastTranslate.y) / 100.0f - sinf(_rotation) * ([sender translationInView:self.view].x - _lastTranslate.x) / 100.0f;
+        _translation.x += cosf(_rotationX) * ([sender translationInView:self.view].x - _lastTranslate.x) / 100.0f + sinf(_rotationX) * ([sender translationInView:self.view].y - _lastTranslate.y) / 100.0f;
+        _translation.z -= cosf(_rotationX) * ([sender translationInView:self.view].y - _lastTranslate.y) / 100.0f - sinf(_rotationX) * ([sender translationInView:self.view].x - _lastTranslate.x) / 100.0f;
         _lastTranslate = [sender translationInView:self.view];
     }
     if (sender.state == UIGestureRecognizerStateEnded) {
@@ -381,8 +386,8 @@ GLfloat gPanelVertexData[48] =
     
     _leftTexture = [self setupTexture:@"leftarrow.png"];
     _rightTexture = [self setupTexture:@"rightarrow.png"];
-    _bothTexture = [self setupTexture:@"botharrow.png"];
-    _noneTexture = [self setupTexture:@"test.jpg"];
+    _bothTexture = [self setupTexture:@"both.jpg"];
+    _noneTexture = [self setupTexture:@"none.jpg"];
     _floorTexture = [self setupTexture:@"floor.jpg"];
     
 }
@@ -406,7 +411,10 @@ GLfloat gPanelVertexData[48] =
 
 - (void)update
 {
-    physics.Update();
+    if (moving) {
+        enemy.Update();
+        physics.Update();
+    }
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
@@ -420,7 +428,8 @@ GLfloat gPanelVertexData[48] =
     self.effect.transform.projectionMatrix = projectionMatrix;
     
     GLKMatrix4 baseModelViewMatrix = GLKMatrix4MakeTranslation(0, 0, 0);
-    baseModelViewMatrix = GLKMatrix4Rotate(baseModelViewMatrix, _rotation, 0.0f, 1.0f, 0.0f);
+    baseModelViewMatrix = GLKMatrix4Rotate(baseModelViewMatrix, _rotationX, 0.0f, 1.0f, 0.0f);
+    baseModelViewMatrix = GLKMatrix4Rotate(baseModelViewMatrix, _rotationY, 1.0f, 0.0f, 0.0f);
     baseModelViewMatrix = GLKMatrix4Translate(baseModelViewMatrix, _translation.x, _translation.y, _translation.z - 4.0f);
     
     for (int i = 0; i < walls.size(); i++) {

@@ -14,8 +14,10 @@ PhysicsEngine::PhysicsEngine() {
 
 void PhysicsEngine::Update() {
     for (int i = 0; i < hitboxes.size(); i++) {
-        if (model.Collide(hitboxes[i])) {
-            
+        if (model.hitbox.Collide(hitboxes[i])) {
+            while (model.hitbox.Collide(hitboxes[i])) {
+                model.Collide();
+            }
         }
     }
 }

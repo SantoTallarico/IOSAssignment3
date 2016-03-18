@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C4216AF41C9CA26400CEA93E /* both.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C4216AF31C9CA26400CEA93E /* both.jpg */; };
 		C43139151C9B95E70096988E /* PhysicsEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C43139131C9B95E70096988E /* PhysicsEngine.cpp */; };
 		C43139181C9B96820096988E /* Hitbox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C43139161C9B96820096988E /* Hitbox.cpp */; };
 		C431391B1C9B9F8C0096988E /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C43139191C9B9F8C0096988E /* Model.cpp */; };
@@ -29,11 +30,11 @@
 		C468D1001C8BA13E001610AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C468D0FF1C8BA13E001610AC /* UIKit.framework */; };
 		C468D1021C8BA1F8001610AC /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C468D1011C8BA1F8001610AC /* OpenGLES.framework */; };
 		C468D1041C8BC2A0001610AC /* floor.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C468D1031C8BC2A0001610AC /* floor.jpg */; };
-		C468D1061C8BF47A001610AC /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C468D1051C8BF47A001610AC /* test.jpg */; };
-		C468D10A1C8C0A69001610AC /* none.png in Resources */ = {isa = PBXBuildFile; fileRef = C468D1091C8C0A69001610AC /* none.png */; };
+		C468D1061C8BF47A001610AC /* none.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C468D1051C8BF47A001610AC /* none.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C4216AF31C9CA26400CEA93E /* both.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = both.jpg; sourceTree = "<group>"; };
 		C43139131C9B95E70096988E /* PhysicsEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhysicsEngine.cpp; sourceTree = "<group>"; };
 		C43139141C9B95E70096988E /* PhysicsEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PhysicsEngine.hpp; sourceTree = "<group>"; };
 		C43139161C9B96820096988E /* Hitbox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hitbox.cpp; sourceTree = "<group>"; };
@@ -66,8 +67,7 @@
 		C468D0FF1C8BA13E001610AC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C468D1011C8BA1F8001610AC /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		C468D1031C8BC2A0001610AC /* floor.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = floor.jpg; sourceTree = "<group>"; };
-		C468D1051C8BF47A001610AC /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
-		C468D1091C8C0A69001610AC /* none.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = none.png; sourceTree = "<group>"; };
+		C468D1051C8BF47A001610AC /* none.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = none.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,17 +126,17 @@
 				C468D0F21C8B8733001610AC /* leftarrow.png */,
 				C468D0F61C8B9172001610AC /* botharrow.png */,
 				C468D1031C8BC2A0001610AC /* floor.jpg */,
-				C468D1051C8BF47A001610AC /* test.jpg */,
-				C468D1091C8C0A69001610AC /* none.png */,
+				C468D1051C8BF47A001610AC /* none.jpg */,
+				C4216AF31C9CA26400CEA93E /* both.jpg */,
 				C468D0F91C8B91D4001610AC /* Wall.hpp */,
 				C468D0FA1C8B91E7001610AC /* Wall.cpp */,
 				C43139131C9B95E70096988E /* PhysicsEngine.cpp */,
 				C43139141C9B95E70096988E /* PhysicsEngine.hpp */,
 				C43139161C9B96820096988E /* Hitbox.cpp */,
 				C43139171C9B96820096988E /* Hitbox.hpp */,
-				C468D0CE1C8B80BA001610AC /* Supporting Files */,
 				C43139191C9B9F8C0096988E /* Model.cpp */,
 				C431391A1C9B9F8C0096988E /* Model.hpp */,
+				C468D0CE1C8B80BA001610AC /* Supporting Files */,
 			);
 			path = Assignment2;
 			sourceTree = "<group>";
@@ -207,16 +207,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				C468D0F81C8B9172001610AC /* botharrow.png in Resources */,
-				C468D10A1C8C0A69001610AC /* none.png in Resources */,
 				C468D0DD1C8B80BA001610AC /* Main.storyboard in Resources */,
 				C468D0D71C8B80BA001610AC /* Shader.vsh in Resources */,
 				C468D0DF1C8B80BA001610AC /* Assets.xcassets in Resources */,
 				C468D0E21C8B80BA001610AC /* LaunchScreen.storyboard in Resources */,
 				C468D0F31C8B8733001610AC /* rightarrow.png in Resources */,
+				C4216AF41C9CA26400CEA93E /* both.jpg in Resources */,
 				C468D0F41C8B8733001610AC /* leftarrow.png in Resources */,
 				C468D1041C8BC2A0001610AC /* floor.jpg in Resources */,
 				C468D0D51C8B80BA001610AC /* Shader.fsh in Resources */,
-				C468D1061C8BF47A001610AC /* test.jpg in Resources */,
+				C468D1061C8BF47A001610AC /* none.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

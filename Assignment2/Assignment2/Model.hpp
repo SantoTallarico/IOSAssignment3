@@ -10,14 +10,22 @@
 #define Model_hpp
 
 #include <stdio.h>
+#include <cstdlib>
+#include <GLKit/GLKit.h>
+#include <vector>
 #include "maze.h"
+#include "Hitbox.hpp"
 
 class Model {
 public:
-    MazeCell entrance;
-    MazeCell exit;
+    Hitbox hitbox;
+    vector_float3 direction;
+    vector_float3 position;
+    std::vector<vector_float3> directions;
     
     Model();
+    void Update();
+    void Collide();
 };
 
 #endif /* Model_hpp */

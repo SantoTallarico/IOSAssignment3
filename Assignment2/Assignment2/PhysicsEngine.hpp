@@ -12,13 +12,14 @@
 #include <stdio.h>
 #include <vector>
 #include "Hitbox.hpp"
+#include "Model.hpp"
 
 using std::vector;
 
 class PhysicsEngine {
 public:
     vector<Hitbox> hitboxes;
-    Hitbox model;
+    Model model;
     
     PhysicsEngine();
     void Update();
