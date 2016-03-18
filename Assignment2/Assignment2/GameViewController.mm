@@ -75,6 +75,7 @@ GLfloat gPanelVertexData[48] =
     vector<Wall> walls;
     PhysicsEngine physics;
     bool moving;
+    Model enemy;
     
     CGPoint _lastTranslate;
 }
@@ -134,6 +135,7 @@ GLfloat gPanelVertexData[48] =
     walls = vector<Wall>();
     physics = PhysicsEngine();
     moving = false;
+    enemy = Model();
     
     [self setupGL];
     

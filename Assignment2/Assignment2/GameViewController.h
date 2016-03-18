@@ -16,6 +16,7 @@
 #import "maze.h"
 #import "Wall.hpp"
 #import "PhysicsEngine.hpp"
+#import "Model.hpp"
 #import <vector>
 #import <cmath>
 

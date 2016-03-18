@@ -10,9 +10,13 @@
 #define Model_hpp
 
 #include <stdio.h>
+#include "maze.h"
 
 class Model {
 public:
+    MazeCell entrance;
+    MazeCell exit;
+    
     Model();
 };
 
