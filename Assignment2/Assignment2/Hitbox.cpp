@@ -39,29 +39,28 @@ bool Hitbox::Collide(Hitbox box) {
     }
 }
 
- Hitbox Hitbox::GetHitboxFromModel() {
+ Hitbox Hitbox::GetHitboxFromModel(const float positions[], int size) {
     float top = FLT_MAX;
     float bottom = -FLT_MAX;
     float left = FLT_MAX;
     float right = -FLT_MAX;
-    for (int i = 0; i < 1; i++) {
-        /*let temp = _object.positions + Int(index);
-        if (index % 3 == 0) {
-            if (temp.memory < left) {
-                left = temp.memory;
+    for (int i = 0; i < size; i++) {
+        if (i % 3 == 0) {
+            if (positions[i] < left) {
+                left = positions[i];
             }
-            else if (temp.memory > right) {
-                right = temp.memory;
+            else if (positions[i] > right) {
+                right = positions[i];
             }
         }
-        else if (index % 3 == 2) {
-            if (temp.memory < top) {
-                top = temp.memory;
+        else if (i % 3 == 2) {
+            if (positions[i] < top) {
+                top = positions[i];
             }
-            else if (temp.memory > bottom) {
-                bottom = temp.memory;
+            else if (positions[i] > bottom) {
+                bottom = positions[i];
             }
-        }*/
+        }
     }
     
     float tempw = right - left;

@@ -14,6 +14,7 @@
 #endif
 
 #import "maze.h"
+#import "cube.h"
 #import "Wall.hpp"
 #import "PhysicsEngine.hpp"
 #import "Model.hpp"

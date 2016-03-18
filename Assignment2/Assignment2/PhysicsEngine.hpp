@@ -19,7 +19,7 @@ using std::vector;
 class PhysicsEngine {
 public:
     vector<Hitbox> hitboxes;
-    Model model;
+    Model* model;
     
     PhysicsEngine();
     void Update();

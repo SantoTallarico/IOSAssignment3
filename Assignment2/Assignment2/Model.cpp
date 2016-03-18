@@ -17,20 +17,29 @@ Model::Model() {
 }
 
 void Model::Update() {
-    position += direction / 100;
-    if (position.z >= 8)
-    {
-        position.z = 7.99f;
+    if (rand() % 50 == 0) {
         direction = directions[rand() % 4];
     }
-    if (position.z <= 0)
+    position += direction / 25;
+    hitbox.x += direction.x / 25;
+    hitbox.y += direction.z / 25;
+    if (position.z <= -7)
     {
-        position = 0.01f;
+        position.z = -6.99f;
+        hitbox.y = -6.99f;
+        direction = directions[rand() % 4];
+    }
+    if (position.z > 0)
+    {
+        position.z = -0.01f;
+        hitbox.y = -0.01f;
         direction = directions[rand() % 4];
     }
 }
 
 void Model::Collide() {
-    position -= direction / 100;
+    position -= direction / 10;
+    hitbox.x -= direction.x / 10;
+    hitbox.y -= direction.z / 10;
     direction = directions[rand() % 4];
 }

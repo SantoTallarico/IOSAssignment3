@@ -22,7 +22,7 @@ public:
     Hitbox();
     Hitbox(float w, float h, float xx, float yy);
     bool Collide(Hitbox box);
-    static Hitbox GetHitboxFromModel();
+    static Hitbox GetHitboxFromModel(const float positions[], int size);
 };
 
 #endif /* Hitbox_hpp */

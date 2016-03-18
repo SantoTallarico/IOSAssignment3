@@ -45,6 +45,15 @@ GLfloat gPanelVertexData[48] =
     -1.0f, 1.0f, 0.0f,         0.0f, 0.0f, 1.0f,        0.0f, 1.0f
 };
 
+const float wallPositions[18] {
+    -1.0f, -1.0f, 0.0f,
+    1.0f, -1.0f, 0.0f,
+    1.0f, 1.0f, 0.0f,
+    -1.0f, -1.0f, 0.0f,
+    1.0f, 1.0f, 0.0f,
+    -1.0f, 1.0f, 0.0f
+};
+
 @interface GameViewController () {
     GLuint _program;
     
@@ -63,6 +72,11 @@ GLfloat gPanelVertexData[48] =
     GLuint _texCoordSlot;
     GLuint _textureUniform;
     
+    GLuint vao;
+    GLuint vbo;
+    GLuint tex_vbo;
+    GLuint n_vbo;
+    GLuint _cubeTexture;
     
     GLKVector4 ambientComponent;
     
@@ -77,6 +91,7 @@ GLfloat gPanelVertexData[48] =
     PhysicsEngine physics;
     bool moving;
     Model enemy;
+    bool sameCell;
     
     CGPoint _lastTranslate;
 }
@@ -85,6 +100,7 @@ GLfloat gPanelVertexData[48] =
 
 - (void)setupGL;
 - (void)tearDownGL;
+- (void)setupVAO;
 
 - (BOOL)loadShaders;
 - (BOOL)compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file;
@@ -137,8 +153,14 @@ GLfloat gPanelVertexData[48] =
     physics = PhysicsEngine();
     moving = false;
     enemy = Model();
-    enemy.hitbox = Hitbox::GetHitboxFromModel();
-    physics.model = enemy;
+    enemy.hitbox = Hitbox::GetHitboxFromModel(cubePositions, 108);
+    enemy.position = (vector_float3){0, 0.1f, 0};
+    enemy.hitbox.width /= 2;
+    enemy.hitbox.height /= 2;
+    enemy.hitbox.x = 0;
+    enemy.hitbox.y = 0;
+    physics.model = &enemy;
+    Hitbox temp;
     
     [self setupGL];
     
@@ -174,7 +196,10 @@ GLfloat gPanelVertexData[48] =
                     w = Wall(_vertexArray, _noneTexture, _textureUniform, GLKVector3Make(2 * i, 0, 2 * -j + 1.0f - 0.001f), GLKVector3Make(0, 0, 0));
                 }
                 walls.push_back(w);
-                physics.hitboxes.push_back(Hitbox::GetHitboxFromModel());
+                temp = Hitbox::GetHitboxFromModel(wallPositions, 18);
+                temp.x = 2 * i;
+                temp.y = 2 * -j + 1.0f - 0.001f;
+                physics.hitboxes.push_back(temp);
             }
             left = false;
             right = false;
@@ -204,7 +229,12 @@ GLfloat gPanelVertexData[48] =
                     w = Wall(_vertexArray, _noneTexture, _textureUniform, GLKVector3Make(2 * i + 1.0f - 0.001f, 0, 2 * -j), GLKVector3Make(M_PI_2, 0, 0));
                 }
                 walls.push_back(w);
-                physics.hitboxes.push_back(Hitbox::GetHitboxFromModel());
+                temp = Hitbox::GetHitboxFromModel(wallPositions, 18);
+                temp.width = temp.height;
+                temp.height = 2;
+                temp.x = 2 * i + 1.0f - 0.001f;
+                temp.y = 2 * -j;
+                physics.hitboxes.push_back(temp);
             }
             left = false;
             right = false;
@@ -234,7 +264,10 @@ GLfloat gPanelVertexData[48] =
                     w = Wall(_vertexArray, _noneTexture, _textureUniform, GLKVector3Make(2 * i, 0, 2 * -j - 1.0f + 0.001f), GLKVector3Make(0, 0, 0));
                 }
                 walls.push_back(w);
-                physics.hitboxes.push_back(Hitbox::GetHitboxFromModel());
+                temp = Hitbox::GetHitboxFromModel(wallPositions, 18);
+                temp.x = 2 * i;
+                temp.y = 2 * -j - 1.0f + 0.001f;
+                physics.hitboxes.push_back(temp);
             }
             left = false;
             right = false;
@@ -264,7 +297,12 @@ GLfloat gPanelVertexData[48] =
                     w = Wall(_vertexArray, _noneTexture, _textureUniform, GLKVector3Make(2 * i - 1.0f + 0.001f, 0, 2 * -j), GLKVector3Make(M_PI + M_PI_2, 0, 0));
                 }
                 walls.push_back(w);
-                physics.hitboxes.push_back(Hitbox::GetHitboxFromModel());
+                temp = Hitbox::GetHitboxFromModel(wallPositions, 18);
+                temp.width = temp.height;
+                temp.height = 2;
+                temp.x = 2 * i - 1.0f + 0.001f;
+                temp.y = 2 * -j;
+                physics.hitboxes.push_back(temp);
             }
             walls.push_back(Wall(_vertexArray, _floorTexture, _textureUniform, GLKVector3Make(2 * i, -1.0f, 2 * -j), GLKVector3Make(0, M_PI_2, 0)));
         }
@@ -290,7 +328,6 @@ GLfloat gPanelVertexData[48] =
 - (void)handleDoubleDragGesture:(UIPanGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateChanged) {
         _rotationX += ([sender translationInView:self.view].x - _lastTranslate.x) / 100.0f;
-        _rotationY += ([sender translationInView:self.view].y - _lastTranslate.y) / 100.0f;
         _lastTranslate = [sender translationInView:self.view];
     }
     if (sender.state == UIGestureRecognizerStateEnded) {
@@ -366,6 +403,9 @@ GLfloat gPanelVertexData[48] =
     glEnable(GL_BLEND);
     glBlendFunc(GL_ONE, GL_SRC_COLOR);
     
+    
+    [self setupVAO];
+    
     glGenVertexArraysOES(1, &_vertexArray);
     glBindVertexArrayOES(_vertexArray);
     
@@ -389,6 +429,7 @@ GLfloat gPanelVertexData[48] =
     _bothTexture = [self setupTexture:@"both.jpg"];
     _noneTexture = [self setupTexture:@"none.jpg"];
     _floorTexture = [self setupTexture:@"floor.jpg"];
+    _cubeTexture = [self setupTexture:@"cube.png"];
     
 }
 
@@ -407,6 +448,36 @@ GLfloat gPanelVertexData[48] =
     }
 }
 
+- (void)setupVAO
+{
+    glGenVertexArraysOES(1, &vao);
+    glBindVertexArrayOES(vao);
+    
+    glGenBuffers(1, &vbo);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(cubePositions), cubePositions, GL_STATIC_DRAW);
+    
+    // Positions
+    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, 0);
+    
+    glGenBuffers(1, &tex_vbo);
+    glBindBuffer(GL_ARRAY_BUFFER, tex_vbo);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(cubeTexels), cubeTexels, GL_STATIC_DRAW);
+    
+    // Texels
+    glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
+    
+    glGenBuffers(1, &n_vbo);
+    glBindBuffer(GL_ARRAY_BUFFER, n_vbo);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(cubeNormals), cubeNormals, GL_STATIC_DRAW);
+    
+    // Normals
+    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, 0);
+    
+    glEnableVertexAttribArray(0);
+    glBindVertexArrayOES(0);
+}
+
 #pragma mark - GLKView and GLKViewController delegate methods
 
 - (void)update
@@ -414,6 +485,14 @@ GLfloat gPanelVertexData[48] =
     if (moving) {
         enemy.Update();
         physics.Update();
+    }
+    else {
+        /*if () {
+            sameCell = true;
+        }
+        else {
+            sameCell = false;
+        }*/
     }
 }
 
@@ -455,6 +534,28 @@ GLfloat gPanelVertexData[48] =
         
         glDrawArrays(GL_TRIANGLES, 0, 6);
     }
+    
+    GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(enemy.position.x, 0.1f, enemy.position.z);
+    modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, 0.5f, 0.5f, 0.5f);
+    modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
+    
+    _normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(modelViewMatrix), NULL);
+    
+    _modelViewProjectionMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
+    
+    glUseProgram(_program);
+    
+    glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, _modelViewProjectionMatrix.m);
+    glUniformMatrix3fv(uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, _normalMatrix.m);
+    glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEW_MATRIX], 1, 0, _modelViewMatrix.m);
+    glUniform4fv(uniforms[UNIFORM_AMBIENT_COMPONENT], 1, ambientComponent.v);
+    
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, _cubeTexture);
+    
+    glBindVertexArrayOES(vao);
+    glDrawArrays(GL_TRIANGLES, 0, cubeVertices);
+    glBindVertexArrayOES(0);
 }
 
 #pragma mark -  OpenGL ES 2 shader compilation
