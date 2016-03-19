@@ -6,9 +6,9 @@
 // Faces: 12
 // Vertices: 36
 
-const int cubeVertices = 36;
+const int modelVertices = 36;
 
-const float cubePositions[108] =
+const float modelPositions[108] =
 {
     1, -1, -1,
     1, -1, 1,
@@ -48,7 +48,7 @@ const float cubePositions[108] =
     -1, 1, -1,
 };
 
-const float cubeTexels[72] =
+const float modelTexels[72] =
 {
     0.375624, 0.500625,
     0.624375, 0.500624,
@@ -88,7 +88,7 @@ const float cubeTexels[72] =
     0.375625, 0.998126,
 };
 
-const float cubeNormals[108] =
+const float modelNormals[108] =
 {
     0, -1, 0,
     0, -1, 0,

@@ -153,7 +153,7 @@ const float wallPositions[18] {
     physics = PhysicsEngine();
     moving = false;
     enemy = Model();
-    enemy.hitbox = Hitbox::GetHitboxFromModel(cubePositions, 108);
+    enemy.hitbox = Hitbox::GetHitboxFromModel(modelPositions, 108);
     enemy.position = (vector_float3){0, 0.1f, 0};
     enemy.hitbox.width /= 2;
     enemy.hitbox.height /= 2;
@@ -429,7 +429,7 @@ const float wallPositions[18] {
     _bothTexture = [self setupTexture:@"both.jpg"];
     _noneTexture = [self setupTexture:@"none.jpg"];
     _floorTexture = [self setupTexture:@"floor.jpg"];
-    _cubeTexture = [self setupTexture:@"cube.png"];
+    _cubeTexture = [self setupTexture:@"thwomp.png"];
     
 }
 
@@ -455,24 +455,27 @@ const float wallPositions[18] {
     
     glGenBuffers(1, &vbo);
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(cubePositions), cubePositions, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(modelPositions), modelPositions, GL_STATIC_DRAW);
     
     // Positions
     glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, 0);
+    glEnableVertexAttribArray(GLKVertexAttribPosition);
     
     glGenBuffers(1, &tex_vbo);
     glBindBuffer(GL_ARRAY_BUFFER, tex_vbo);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(cubeTexels), cubeTexels, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(modelTexels), modelTexels, GL_STATIC_DRAW);
     
     // Texels
     glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
+    glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
     
     glGenBuffers(1, &n_vbo);
     glBindBuffer(GL_ARRAY_BUFFER, n_vbo);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(cubeNormals), cubeNormals, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(modelNormals), modelNormals, GL_STATIC_DRAW);
     
     // Normals
     glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, 0);
+    glEnableVertexAttribArray(GLKVertexAttribNormal);
     
     glEnableVertexAttribArray(0);
     glBindVertexArrayOES(0);
@@ -554,7 +557,7 @@ const float wallPositions[18] {
     glBindTexture(GL_TEXTURE_2D, _cubeTexture);
     
     glBindVertexArrayOES(vao);
-    glDrawArrays(GL_TRIANGLES, 0, cubeVertices);
+    glDrawArrays(GL_TRIANGLES, 0, modelVertices);
     glBindVertexArrayOES(0);
 }
 

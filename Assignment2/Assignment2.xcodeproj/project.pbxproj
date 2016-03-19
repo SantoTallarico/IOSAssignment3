@@ -7,10 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		179FCDF91C9CF7760075B7C0 /* thwomp.png in Resources */ = {isa = PBXBuildFile; fileRef = 179FCDF81C9CF7760075B7C0 /* thwomp.png */; };
 		C4216AF41C9CA26400CEA93E /* both.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C4216AF31C9CA26400CEA93E /* both.jpg */; };
-		C4216AFC1C9CBB6300CEA93E /* cube.c in Sources */ = {isa = PBXBuildFile; fileRef = C4216AF81C9CBB6300CEA93E /* cube.c */; };
 		C4216AFD1C9CBB6300CEA93E /* cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = C4216AFA1C9CBB6300CEA93E /* cube.obj */; };
-		C4216AFE1C9CBB6300CEA93E /* cube.png in Resources */ = {isa = PBXBuildFile; fileRef = C4216AFB1C9CBB6300CEA93E /* cube.png */; };
 		C43139151C9B95E70096988E /* PhysicsEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C43139131C9B95E70096988E /* PhysicsEngine.cpp */; };
 		C43139181C9B96820096988E /* Hitbox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C43139161C9B96820096988E /* Hitbox.cpp */; };
 		C431391B1C9B9F8C0096988E /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C43139191C9B9F8C0096988E /* Model.cpp */; };
@@ -37,11 +36,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		179FCDF81C9CF7760075B7C0 /* thwomp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thwomp.png; sourceTree = "<group>"; };
 		C4216AF31C9CA26400CEA93E /* both.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = both.jpg; sourceTree = "<group>"; };
-		C4216AF81C9CBB6300CEA93E /* cube.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cube.c; sourceTree = "<group>"; };
-		C4216AF91C9CBB6300CEA93E /* cube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cube.h; sourceTree = "<group>"; };
+		C4216AF91C9CBB6300CEA93E /* model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = model.h; sourceTree = "<group>"; };
 		C4216AFA1C9CBB6300CEA93E /* cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.obj; sourceTree = "<group>"; };
-		C4216AFB1C9CBB6300CEA93E /* cube.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cube.png; sourceTree = "<group>"; };
 		C43139131C9B95E70096988E /* PhysicsEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhysicsEngine.cpp; sourceTree = "<group>"; };
 		C43139141C9B95E70096988E /* PhysicsEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PhysicsEngine.hpp; sourceTree = "<group>"; };
 		C43139161C9B96820096988E /* Hitbox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hitbox.cpp; sourceTree = "<group>"; };
@@ -95,10 +93,9 @@
 		C4216AF71C9CBB5500CEA93E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C4216AF81C9CBB6300CEA93E /* cube.c */,
-				C4216AF91C9CBB6300CEA93E /* cube.h */,
+				179FCDF81C9CF7760075B7C0 /* thwomp.png */,
+				C4216AF91C9CBB6300CEA93E /* model.h */,
 				C4216AFA1C9CBB6300CEA93E /* cube.obj */,
-				C4216AFB1C9CBB6300CEA93E /* cube.png */,
 			);
 			name = Resources;
 			path = Assignment2;
@@ -228,12 +225,12 @@
 			files = (
 				C4216AFD1C9CBB6300CEA93E /* cube.obj in Resources */,
 				C468D0F81C8B9172001610AC /* botharrow.png in Resources */,
-				C4216AFE1C9CBB6300CEA93E /* cube.png in Resources */,
 				C468D0DD1C8B80BA001610AC /* Main.storyboard in Resources */,
 				C468D0D71C8B80BA001610AC /* Shader.vsh in Resources */,
 				C468D0DF1C8B80BA001610AC /* Assets.xcassets in Resources */,
 				C468D0E21C8B80BA001610AC /* LaunchScreen.storyboard in Resources */,
 				C468D0F31C8B8733001610AC /* rightarrow.png in Resources */,
+				179FCDF91C9CF7760075B7C0 /* thwomp.png in Resources */,
 				C4216AF41C9CA26400CEA93E /* both.jpg in Resources */,
 				C468D0F41C8B8733001610AC /* leftarrow.png in Resources */,
 				C468D1041C8BC2A0001610AC /* floor.jpg in Resources */,
@@ -249,7 +246,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C4216AFC1C9CBB6300CEA93E /* cube.c in Sources */,
 				C431391B1C9B9F8C0096988E /* Model.cpp in Sources */,
 				C468D0ED1C8B822D001610AC /* DisjointSet.cpp in Sources */,
 				C43139181C9B96820096988E /* Hitbox.cpp in Sources */,
