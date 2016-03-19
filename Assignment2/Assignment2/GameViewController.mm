@@ -87,6 +87,11 @@ const float wallPositions[18] {
     float _rotationX;
     float _rotationY;
     
+    
+    GLKVector3 _eTranslation;
+    float _eRotationX;
+    float _eRotationY;
+    
     vector<Wall> walls;
     PhysicsEngine physics;
     bool moving;
@@ -94,6 +99,8 @@ const float wallPositions[18] {
     bool sameCell;
     
     CGPoint _lastTranslate;
+    CGPoint _eLastTranslate;
+    float _eLastScale;
 }
 @property (strong, nonatomic) EAGLContext *context;
 @property (strong, nonatomic) GLKBaseEffect *effect;
@@ -122,6 +129,16 @@ const float wallPositions[18] {
     movingGesture.numberOfTapsRequired = 2;
     movingGesture.numberOfTouchesRequired = 2;
     [self.view addGestureRecognizer:movingGesture];
+    
+    UIPanGestureRecognizer *quadDragGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleQuadDragGesture:)];
+    quadDragGesture.maximumNumberOfTouches = 3;
+    quadDragGesture.minimumNumberOfTouches = 3;
+    [self.view addGestureRecognizer:quadDragGesture];
+    
+    UIPanGestureRecognizer *tripleDragGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleTripleDragGesture:)];
+    tripleDragGesture.maximumNumberOfTouches = 3;
+    tripleDragGesture.minimumNumberOfTouches = 3;
+    [self.view addGestureRecognizer:tripleDragGesture];
     
     UIPanGestureRecognizer *doubleDragGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleDragGesture:)];
     doubleDragGesture.maximumNumberOfTouches = 2;
@@ -321,7 +338,34 @@ const float wallPositions[18] {
 
 - (void)handleMovingGesture:(UITapGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateRecognized) {
+        if (moving == false) {
+            _eTranslation.x = 0;
+            _eTranslation.y = 0;
+            _eTranslation.z = 0;
+        }
         moving = !moving;
+    }
+}
+
+- (void)handleQuadDragGesture:(UIPanGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateChanged) {
+        _eTranslation.y -= ([sender translationInView:self.view].y - _eLastTranslate.y) / 100.0f;
+        _eLastTranslate = [sender translationInView:self.view];
+    }
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        _eLastTranslate.y = 0;
+    }
+}
+
+- (void)handleTripleDragGesture:(UIPanGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateChanged) {
+        _eTranslation.x += ([sender translationInView:self.view].x - _eLastTranslate.x) / 100.0f;
+        _eTranslation.z -= ([sender translationInView:self.view].y - _eLastTranslate.y) / 100.0f;
+        _eLastTranslate = [sender translationInView:self.view];
+    }
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        _eLastTranslate.x = 0;
+        _eLastTranslate.y = 0;
     }
 }
 
@@ -490,12 +534,12 @@ const float wallPositions[18] {
         physics.Update();
     }
     else {
-        /*if () {
+        if ((int)enemy.position.x == (int)-_translation.x && (int)enemy.position.z == (int)-(_translation.z - 4.0f)) {
             sameCell = true;
         }
         else {
             sameCell = false;
-        }*/
+        }
     }
 }
 
@@ -539,6 +583,7 @@ const float wallPositions[18] {
     }
     
     GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(enemy.position.x, 0.1f, enemy.position.z);
+    modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, _eTranslation.x, _eTranslation.y, _eTranslation.z);
     modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, 0.5f, 0.5f, 0.5f);
     modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
     
