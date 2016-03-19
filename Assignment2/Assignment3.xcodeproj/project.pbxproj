@@ -46,7 +46,7 @@
 		C43139171C9B96820096988E /* Hitbox.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Hitbox.hpp; sourceTree = "<group>"; };
 		C43139191C9B9F8C0096988E /* Model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Model.cpp; sourceTree = "<group>"; };
 		C431391A1C9B9F8C0096988E /* Model.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Model.hpp; sourceTree = "<group>"; };
-		C468D0CB1C8B80BA001610AC /* Assignment2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assignment2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C468D0CB1C8B80BA001610AC /* Assignment3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assignment3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C468D0CF1C8B80BA001610AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C468D0D11C8B80BA001610AC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C468D0D21C8B80BA001610AC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -109,7 +109,7 @@
 				C468D0FF1C8BA13E001610AC /* UIKit.framework */,
 				C468D0FD1C8BA103001610AC /* CoreGraphics.framework */,
 				C468D0EF1C8B8272001610AC /* GLKit.framework */,
-				C468D0CD1C8B80BA001610AC /* Assignment2 */,
+				C468D0CD1C8B80BA001610AC /* Assignment3 */,
 				C468D0CC1C8B80BA001610AC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -117,12 +117,12 @@
 		C468D0CC1C8B80BA001610AC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C468D0CB1C8B80BA001610AC /* Assignment2.app */,
+				C468D0CB1C8B80BA001610AC /* Assignment3.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C468D0CD1C8B80BA001610AC /* Assignment2 */ = {
+		C468D0CD1C8B80BA001610AC /* Assignment3 */ = {
 			isa = PBXGroup;
 			children = (
 				C468D0D11C8B80BA001610AC /* AppDelegate.h */,
@@ -155,6 +155,7 @@
 				C431391A1C9B9F8C0096988E /* Model.hpp */,
 				C468D0CE1C8B80BA001610AC /* Supporting Files */,
 			);
+			name = Assignment3;
 			path = Assignment2;
 			sourceTree = "<group>";
 		};
@@ -169,9 +170,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C468D0CA1C8B80BA001610AC /* Assignment2 */ = {
+		C468D0CA1C8B80BA001610AC /* Assignment3 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C468D0E61C8B80BA001610AC /* Build configuration list for PBXNativeTarget "Assignment2" */;
+			buildConfigurationList = C468D0E61C8B80BA001610AC /* Build configuration list for PBXNativeTarget "Assignment3" */;
 			buildPhases = (
 				C468D0C71C8B80BA001610AC /* Sources */,
 				C468D0C81C8B80BA001610AC /* Frameworks */,
@@ -181,9 +182,9 @@
 			);
 			dependencies = (
 			);
-			name = Assignment2;
+			name = Assignment3;
 			productName = Assignment2;
-			productReference = C468D0CB1C8B80BA001610AC /* Assignment2.app */;
+			productReference = C468D0CB1C8B80BA001610AC /* Assignment3.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -200,7 +201,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C468D0C61C8B80BA001610AC /* Build configuration list for PBXProject "Assignment2" */;
+			buildConfigurationList = C468D0C61C8B80BA001610AC /* Build configuration list for PBXProject "Assignment3" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -213,7 +214,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C468D0CA1C8B80BA001610AC /* Assignment2 */,
+				C468D0CA1C8B80BA001610AC /* Assignment3 */,
 			);
 		};
 /* End PBXProject section */
@@ -370,7 +371,7 @@
 				INFOPLIST_FILE = Assignment2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = bcit.Assignment2;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Assignment3;
 			};
 			name = Debug;
 		};
@@ -382,14 +383,14 @@
 				INFOPLIST_FILE = Assignment2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = bcit.Assignment2;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Assignment3;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C468D0C61C8B80BA001610AC /* Build configuration list for PBXProject "Assignment2" */ = {
+		C468D0C61C8B80BA001610AC /* Build configuration list for PBXProject "Assignment3" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C468D0E41C8B80BA001610AC /* Debug */,
@@ -398,7 +399,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C468D0E61C8B80BA001610AC /* Build configuration list for PBXNativeTarget "Assignment2" */ = {
+		C468D0E61C8B80BA001610AC /* Build configuration list for PBXNativeTarget "Assignment3" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C468D0E71C8B80BA001610AC /* Debug */,
